@@ -4,3 +4,7 @@ export type TTodos = {
     completed: boolean;
     userId: number;
 };
+
+export type TTodosQueryData = {
+    todos: TTodos[];
+};

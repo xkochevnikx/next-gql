@@ -6,6 +6,7 @@ export default function Header() {
         <div className="header">
             <Link href={'/'}>home</Link>
             <Link href={'/todo'}>todo</Link>
+            <Link href={'/newTodo'}>new</Link>
         </div>
     );
 }

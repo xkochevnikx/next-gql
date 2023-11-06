@@ -1,0 +1,27 @@
+{
+    "name": "next-gql",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "server": "json-graphql-server db.ts --p 4000",
+        "build": "next build",
+        "start": "concurrently \"npm run dev\" \"npm run server\"",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.8.7",
+        "concurrently": "^8.2.2",
+        "graphql": "^16.8.1",
+        "json-graphql-server": "^2.3.2",
+        "next": "14.0.1",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "typescript": "^5"
+    }
+}

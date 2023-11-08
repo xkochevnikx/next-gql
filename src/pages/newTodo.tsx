@@ -8,12 +8,27 @@ export default function NewTodo() {
     const [addTodo, {}] = useMutation(
         ADD_TODOS,
         //todo - пример рефетча после добавления новой todo
+        // {
+        //     refetchQueries: [
+        //         {
+        //             query: GET_TODOS,
+        //         },
+        //     ],
+        // }
+        //todo - пример с обновлнеим кэша
         {
-            refetchQueries: [
-                {
+            update(cache, { data: newTodo }) {
+                const { todos } = cache.readQuery({
                     query: GET_TODOS,
-                },
-            ],
+                });
+
+                cache.writeQuery({
+                    query: GET_TODOS,
+                    data: {
+                        todos: [...todos, newTodo],
+                    },
+                });
+            },
         }
     );
 

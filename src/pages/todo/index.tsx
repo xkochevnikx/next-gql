@@ -4,14 +4,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 type TTodosPageProps = {
-    data: {
-        todos: TTodos[];
-    };
+    todos: TTodos[];
 };
 
-export default function Todos({ data }: TTodosPageProps) {
-    const { todos } = data;
-
+export default function Todos({ todos }: TTodosPageProps) {
     return (
         <div className="todoPage">
             <Head>
@@ -34,6 +30,8 @@ export async function getStaticProps() {
         query: GET_TODOS,
     });
 
+    const { todos } = data;
+
     if (!data) {
         return {
             redirect: {
@@ -44,7 +42,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            data,
+            todos,
         },
         revalidate: 60,
     };

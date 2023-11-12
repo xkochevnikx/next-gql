@@ -16,6 +16,15 @@ export const GET_TODOS = gql`
     }
 `;
 
+export const GET_TODO = gql`
+    query Todo($id: ID!) {
+        todo: Todo(id: $id) {
+            id
+            title
+        }
+    }
+`;
+
 export const ADD_TODOS = gql`
     mutation AddTodo($title: String!, $userId: Int!, $completed: Boolean!) {
         createTodo(title: $title, userId: $userId, completed: $completed) {

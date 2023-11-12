@@ -2,8 +2,13 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
+import dynamic from 'next/dynamic';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const DynamicFooter = dynamic(() => import('@/components/Footer'), {
+    ssr: false,
+});
 
 export default function Layout({ children }: PropsWithChildren) {
     return (
@@ -11,7 +16,7 @@ export default function Layout({ children }: PropsWithChildren) {
             <div className="body">
                 <Header />
                 <main>{children}</main>
-                <Footer />
+                <DynamicFooter />
             </div>
         </div>
     );

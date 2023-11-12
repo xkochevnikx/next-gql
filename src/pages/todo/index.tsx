@@ -1,7 +1,7 @@
 import client, { GET_TODOS } from '@/apollo/apollo-client';
 import { TTodos, TTodosQueryData } from '@/types/Index';
-import type { Metadata } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 type TTodosPageProps = {
     data: {
@@ -19,12 +19,17 @@ export default function Todos({ data }: TTodosPageProps) {
                 <meta property="og:title" content="My todo title" key="title" />
             </Head>
             <h2>Todos 🚀</h2>
-            {todos && todos.map((todo) => <p key={todo.title}>{todo.title}</p>)}
+            {todos &&
+                todos.map((todo) => (
+                    <h3 key={todo.title}>
+                        <Link href={`./todo/${todo.id}`}>{todo.title}</Link>
+                    </h3>
+                ))}
         </div>
     );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const { data, errors } = await client.query<TTodosQueryData>({
         query: GET_TODOS,
     });

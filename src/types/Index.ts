@@ -8,3 +8,8 @@ export type TTodos = {
 export type TTodosQueryData = {
     todos: TTodos[];
 };
+
+export interface IMeta {
+    title: string;
+    description?: string;
+}

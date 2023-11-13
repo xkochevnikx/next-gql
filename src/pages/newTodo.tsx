@@ -16,16 +16,27 @@ export default function NewTodo() {
         //     ],
         // }
         //todo - пример с обновлнеим кэша
+        // {
+        //     update(cache, { data: newTodo }) {
+        //         const { todos } = cache.readQuery({
+        //             query: GET_TODOS,
+        //         });
+        //         cache.writeQuery({
+        //             query: GET_TODOS,
+        //             data: {
+        //                 todos: [...todos, newTodo],
+        //             },
+        //         });
+        //     },
+        // },
+        //todo - nретий пример
         {
             update(cache, { data: newTodo }) {
-                const { todos } = cache.readQuery({
-                    query: GET_TODOS,
-                });
-
-                cache.writeQuery({
-                    query: GET_TODOS,
-                    data: {
-                        todos: [...todos, newTodo],
+                cache.modify({
+                    fields: {
+                        allTodos(currentTodo = []) {
+                            return [...currentTodo, newTodo];
+                        },
                     },
                 });
             },

@@ -25,7 +25,7 @@ export default function Todo({ data }: TTodoPageProps) {
 }
 
 export const getStaticPaths = async () => {
-    const { data, errors } = await client.query<TTodosQueryData>({
+    const { data } = await client.query<TTodosQueryData>({
         query: GET_TODOS,
     });
 
@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-    const { data, errors } = await client.query<TTodos>({
+    const { data } = await client.query<TTodos>({
         query: GET_TODO,
         variables: {
             id: context?.params?.id,
